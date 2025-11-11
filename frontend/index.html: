@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>SPOREX ANALYSIS ⚽</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>⚽ SPOREX ZONE – Analyse Automatique</h1>
+  <button id="btn">Analyser une actu aléatoire</button>
+
+  <div id="result" class="card"></div>
+
+  <script src="app.js"></script>
+</body>
+  </html>
