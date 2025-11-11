@@ -1,0 +1,42 @@
+name: SPOREX Random Post
+
+on:
+  schedule:
+    - cron: '0 9 * * *'    # exemple: 09:00 UTC (ajuste selon fuseau)
+  workflow_dispatch:
+
+jobs:
+  random-post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true   # autorise push via GITHUB_TOKEN
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: python -m pip install --upgrade pip && pip install requests
+
+      - name: Run random post
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT: ${{ secrets.TELEGRAM_CHAT }}
+        run: |
+          python backend/random_post.py
+
+      - name: Commit used_messages.json if changed
+        run: |
+          git config user.email "${{ secrets.GIT_EMAIL }}"
+          git config user.name "${{ secrets.GIT_NAME }}"
+          git add backend/used_messages.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Auto: update used_messages.json (random post)"
+            git push origin HEAD:main
+          else
+            echo "No used messages changes"
+          fi
