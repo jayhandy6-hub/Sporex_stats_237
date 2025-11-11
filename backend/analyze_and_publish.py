@@ -24,7 +24,7 @@ SPORT_KEYS = {
     "LaLiga": "soccer_spain_la_liga",
     "Serie A": "soccer_italy_serie_a",
     "Bundesliga": "soccer_germany_bundesliga",
-    "Ligue 1": "soccer_french_ligue_one",
+    "Ligue 1": "soccer_france_ligue_one",
     "Primeira Liga": "soccer_portugal_primeira_liga",
     "Eredivisie": "soccer_netherlands_eredivisie"
 }
