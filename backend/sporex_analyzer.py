@@ -42,3 +42,16 @@ if __name__ == "__main__":
     analysis = generate_analysis(data)
     save_analysis(analysis)
     print(generate_report(analysis))
+    import feedparser
+
+def fetch_rss_news(url):
+    """Récupère et parse les news depuis un flux RSS."""
+    feed = feedparser.parse(url)
+    news = []
+    for entry in feed.entries:
+        news.append({
+            'title': entry.title,
+            'link': entry.link,
+            'published': entry.published
+        })
+    return news
