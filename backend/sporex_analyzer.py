@@ -36,7 +36,7 @@ def generate_report(analysis):
 
 # Exemple d’usage
 if __name__ == "__main__":
-    url = "https://example.com"
+    url = "https://www.lequipe.fr/rss/football.xml"
     raw_html = fetch_data(url)
     data = process_data(raw_html)
     analysis = generate_analysis(data)
